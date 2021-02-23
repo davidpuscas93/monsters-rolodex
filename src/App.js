@@ -20,11 +20,16 @@ class App extends Component {
   componentDidMount() {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then(response => response.json())
-      .then(users => this.setState({ monsters: users }));
+      .then(users => this.setState((prevState, prevProps) => {
+        return { monsters: users }
+      }));
   }
 
   handleChange = (e) => {
-    this.setState({ searchField: e.target.value });
+    // this.setState({ searchField: e.target.value });
+    this.setState((prevState, prevProps) => {
+      return { searchField: e.target.value }
+    });
   }
 
   render() {
